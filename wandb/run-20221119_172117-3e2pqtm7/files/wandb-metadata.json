@@ -1,0 +1,130 @@
+{
+    "os": "Linux-5.4.0-132-generic-x86_64-with-glibc2.17",
+    "python": "3.8.13",
+    "heartbeatAt": "2022-11-19T22:21:18.053865",
+    "startedAt": "2022-11-19T22:21:17.470131",
+    "docker": null,
+    "cuda": null,
+    "args": [
+        "-e",
+        "5",
+        "--load",
+        "checkpoints/checkpoint_epoch5.pth"
+    ],
+    "state": "running",
+    "program": "needle_train.py",
+    "codePath": "needle_train.py",
+    "git": {
+        "remote": "https://github.com/milesial/Pytorch-UNet.git",
+        "commit": "a013c80ca6b011ba34ba0700b961b77e0ed003a2"
+    },
+    "email": "ryan831026@gmail.com",
+    "root": "/home/yhdeng/unet/Pytorch-UNet",
+    "host": "YHDeng-ROS",
+    "username": "yhdeng",
+    "executable": "/home/yhdeng/miniconda3/envs/cv2022/bin/python",
+    "cpu_count": 10,
+    "cpu_count_logical": 16,
+    "cpu_freq": {
+        "current": 4293.380062500001,
+        "min": 800.0,
+        "max": 5625.0
+    },
+    "cpu_freq_per_core": [
+        {
+            "current": 4538.412,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4586.048,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4560.8,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4532.378,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4494.312,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4348.222,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4489.275,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4535.834,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4552.769,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4535.501,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4563.091,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 4558.02,
+            "min": 800.0,
+            "max": 6300.0
+        },
+        {
+            "current": 3599.981,
+            "min": 800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3599.851,
+            "min": 800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3599.98,
+            "min": 800.0,
+            "max": 3600.0
+        },
+        {
+            "current": 3599.607,
+            "min": 800.0,
+            "max": 3600.0
+        }
+    ],
+    "disk": {
+        "total": 218.50913619995117,
+        "used": 78.81701278686523
+    },
+    "gpu": "NVIDIA GeForce RTX 3070",
+    "gpu_count": 1,
+    "gpu_devices": [
+        {
+            "name": "NVIDIA GeForce RTX 3070",
+            "memory_total": 8589934592
+        }
+    ],
+    "memory": {
+        "total": 15.47662353515625
+    }
+}
