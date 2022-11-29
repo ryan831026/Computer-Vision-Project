@@ -19,7 +19,7 @@ from unet import UNet
 # dir_img = Path('./data/imgs/')
 # dir_mask = Path('./data/masks/')
 dir_img = Path('./data/imgs_needle/')
-dir_mask = Path('./data/masks_neeldle/')
+dir_mask = Path('./data/masks_needle/')
 dir_checkpoint = Path('./checkpoints/')
 
 
