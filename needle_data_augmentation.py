@@ -35,8 +35,8 @@ transform = A.Compose([
     A.Flip(p=1),
     A.CropNonEmptyMaskIfExists(height=700, width=700, p=1),
     A.GridDistortion(p=1),
-    A.ColorJitter(brightness=0.3, contrast=0.2, saturation=0.2,
-                  hue=0.05, always_apply=False, p=1),
+    A.ColorJitter(brightness=0.3, contrast=0.2, saturation=0.1,
+                  hue=0.1, always_apply=False, p=1),
 
     A.Resize(572, 572, interpolation=2)
 ])
