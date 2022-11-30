@@ -20,8 +20,8 @@ import albumentations as A
 
 # dir_img = Path('./data/imgs/')
 # dir_mask = Path('./data/masks/')
-dir_img = Path('./data/imgs_needle/')
-dir_mask = Path('./data/masks_needle/')
+dir_img = Path('./data/imgs_needle_new/')
+dir_mask = Path('./data/masks_needle_new/')
 dir_checkpoint = Path('./checkpoints/')
 
 
