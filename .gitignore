@@ -133,3 +133,4 @@ checkpoints/
 data/imgs/
 data/masks/
 wandb/
+utils/__pycache__/data_loading.cpython-38.pyc
