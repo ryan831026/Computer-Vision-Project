@@ -18,10 +18,8 @@ from unet import UNet
 import albumentations as A
 
 
-# dir_img = Path('./data/imgs/')
-# dir_mask = Path('./data/masks/')
-dir_img = Path('./data/imgs_needle_new/')
-dir_mask = Path('./data/masks_needle_new/')
+dir_img = Path('./data/imgs_needle3/')
+dir_mask = Path('./data/masks_needle3/')
 dir_checkpoint = Path('./checkpoints/')
 
 

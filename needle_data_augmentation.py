@@ -5,8 +5,8 @@ import os
 import glob
 import albumentations as A
 
-path_needle = 'data/imgs_needle/'
-path_mask = 'data/masks_needle/'
+path_needle = 'data/imgs_needle2/'
+path_mask = 'data/masks_needle2/'
 
 # for i, filename_full in enumerate(glob.glob(os.path.join(path_needle, '*.png'))):
 #     filename = filename_full.split('/')[-1]

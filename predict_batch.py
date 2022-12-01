@@ -70,6 +70,10 @@ if __name__ == '__main__':
         overlayed_img = img + 0.5 * img_needle
         overlayed_img[overlayed_img > 255] = 255
         overlayed_img = overlayed_img.astype(np.uint8)
+        try:
+            os.mkdir(out_folder)
+        except:
+            pass
         mask_filename_full = out_folder + filename.split('/')[2]
         cv2.imwrite(mask_filename_full, overlayed_img)
         print(f'save image #{i+1}  {mask_filename_full}')
