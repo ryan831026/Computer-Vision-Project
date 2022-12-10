@@ -130,7 +130,11 @@ dmypy.json
 
 # folders
 checkpoints/
+checkpoints_pretraining/
 data/imgs/
 data/masks/
+data/kagle_3m/
+data/imgs_brain/
+data/masks_brain/
 wandb/
 utils/__pycache__/data_loading.cpython-38.pyc
