@@ -133,7 +133,7 @@ checkpoints/
 checkpoints_pretraining/
 data/imgs/
 data/masks/
-data/kagle_3m/
+data/kaggle_3m/
 data/imgs_brain/
 data/masks_brain/
 wandb/
