@@ -51,13 +51,13 @@ class BasicDataset(Dataset):
         if not pil_mask == None or not if_val:
             transform = A.Compose(
                 [
-                    A.Flip(p=0.2),
-                    A.CropNonEmptyMaskIfExists(height=700, width=700, p=0.2),
-                    A.GridDistortion(p=0.2),
+                    A.HorizontalFlip(p=0.5),
+                    # A.CropNonEmptyMaskIfExists(height=700, width=700, p=0.2),
+                    # A.GridDistortion(num_steps=2, p=0.2),
                     A.ColorJitter(
-                        brightness=0.3,
-                        contrast=0.2,
-                        saturation=0.1,
+                        brightness=0.1,
+                        contrast=0,
+                        saturation=0,
                         hue=0.1,
                         always_apply=False,
                         p=0.2,
