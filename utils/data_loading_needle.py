@@ -17,14 +17,14 @@ class BasicDataset(Dataset):
         masks_dir: str,
         scale: float = 1.0,
         mask_suffix: str = "",
-        if_val=False,
+        if_random=False,
     ):
         self.images_dir = Path(images_dir)
         self.masks_dir = Path(masks_dir)
         assert 0 < scale <= 1, "Scale must be between 0 and 1"
         self.scale = scale
         self.mask_suffix = mask_suffix
-        self.if_val = if_val
+        self.if_random = if_random
 
         self.ids = [
             splitext(file)[0]
@@ -41,14 +41,14 @@ class BasicDataset(Dataset):
         return len(self.ids)
 
     @staticmethod
-    def preprocess(pil_img, pil_mask, scale, if_val):
+    def preprocess(pil_img, pil_mask, scale, if_random):
         w, h = pil_img.size
         newW, newH = int(scale * w), int(scale * h)
         assert (
             newW > 0 and newH > 0
         ), "Scale is too small, resized images would have no pixel"
 
-        if not pil_mask == None or not if_val:
+        if not pil_mask == None or if_random:
             transform = A.Compose(
                 [
                     A.HorizontalFlip(p=0.5),
@@ -120,7 +120,7 @@ class BasicDataset(Dataset):
             img.size == mask.size
         ), f"Image and mask {name} should be the same size, but are {img.size} and {mask.size}"
 
-        img, mask = self.preprocess(img, mask, self.scale, self.if_val)
+        img, mask = self.preprocess(img, mask, self.scale, self.if_random)
 
         return {
             "image": torch.as_tensor(img.copy()).float().contiguous(),
@@ -129,7 +129,7 @@ class BasicDataset(Dataset):
 
 
 class CarvanaDataset(BasicDataset):
-    def __init__(self, images_dir, masks_dir, scale=1, if_val=False):
+    def __init__(self, images_dir, masks_dir, scale=1, if_random=False):
         super().__init__(
-            images_dir, masks_dir, scale, mask_suffix="_mask", if_val=if_val
+            images_dir, masks_dir, scale, mask_suffix="_mask", if_random=if_random
         )
