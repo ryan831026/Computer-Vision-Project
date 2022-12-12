@@ -18,8 +18,8 @@ from unet import UNet
 import albumentations as A
 
 
-dir_img = Path("./data/imgs_needle3/")
-dir_mask = Path("./data/masks_needle3/")
+dir_img = Path("./data/imgs_needle2/")
+dir_mask = Path("./data/masks_needle2/")
 dir_checkpoint = Path("./checkpoints/")
 
 
@@ -37,11 +37,10 @@ def train_net(
 
     # 1. Create dataset
     try:
-        dataset = CarvanaDataset(dir_img, dir_mask, img_scale, False)
-        dataset_val = CarvanaDataset(dir_img, dir_mask, img_scale, True)
+        dataset = CarvanaDataset(dir_img, dir_mask, img_scale, if_random=True)
+        dataset_val = CarvanaDataset(dir_img, dir_mask, img_scale, if_random=False)
     except (AssertionError, RuntimeError):
-        dataset = BasicDataset(dir_img, dir_mask, img_scale, False)
-        dataset_val = CarvanaDataset(dir_img, dir_mask, img_scale, True)
+        pass
 
     # # 2. Split into train / validation partitions
     # n_val = int(len(dataset) * val_percent)
