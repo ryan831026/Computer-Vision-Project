@@ -11,7 +11,7 @@ from torchvision import transforms
 
 from utils.data_loading_needle import BasicDataset
 from unet import UNet
-from utils.utils import plot_img_and_mask
+from utils.dice_score import dice_coeff
 
 from needle_predict import predict_img, mask_to_image
 
@@ -80,6 +80,8 @@ if __name__ == "__main__":
 
     logging.info("Model loaded!")
 
+    dice_sum = 0
+
     for i, filename in enumerate(file_list):
         logging.info(f"\nPredicting image {filename} ...")
         img = Image.open(filename)
@@ -92,6 +94,23 @@ if __name__ == "__main__":
             device=device,
         )
 
+        # true mask
+        true_mask_filename = (
+            filename.split("/")[0]
+            + "/masks_"
+            + filename.split("/")[1].split("_")[1]
+            + "/"
+            + filename.split("/")[2].split(".")[0]
+            + "_mask.png"
+        )
+        true_mask = cv2.imread(true_mask_filename)[:, :, 0].astype(bool)
+        dice = dice_coeff(
+            torch.as_tensor(mask[1, :, :].copy()).long().contiguous(),
+            torch.as_tensor(true_mask.copy()).long().contiguous(),
+        )
+        dice = float(dice.numpy())
+        dice_sum = dice_sum + dice
+
         # plot
         img = cv2.imread(filename)
         img_needle = np.zeros(img.shape, dtype=int)
@@ -103,6 +122,16 @@ if __name__ == "__main__":
             os.mkdir(out_folder)
         except:
             pass
-        mask_filename_full = out_folder + filename.split("/")[2]
-        cv2.imwrite(mask_filename_full, overlayed_img)
-        print(f"save image #{i+1}  {mask_filename_full}")
+        output_filename_full = (
+            out_folder
+            + filename.split("/")[2].split(".")[0]
+            + "_dice_"
+            + str(round(dice * 100))
+            + ".png"
+        )
+        cv2.imwrite(output_filename_full, overlayed_img)
+        print(
+            f"save image #{i+1}  {output_filename_full}  dice score: {round(dice, 3)}"
+        )
+
+    print(f"Average dice score: {round(dice_sum/len(file_list), 3)}")
