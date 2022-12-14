@@ -18,8 +18,8 @@ from unet import UNet
 import albumentations as A
 
 
-dir_img = Path("./data/imgs_needle2/")
-dir_mask = Path("./data/masks_needle2/")
+# dir_img = Path("./data/imgs_needle2/")
+# dir_mask = Path("./data/masks_needle2/")
 dir_checkpoint = Path("./checkpoints/")
 
 
@@ -33,11 +33,14 @@ def train_net(
     save_checkpoint: bool = True,
     img_scale: float = 0.5,
     amp: bool = False,
+    dir_img=Path("./data/imgs_needle2/"),
+    dir_mask=Path("./data/masks_needle2/"),
+    random=False,
 ):
 
     # 1. Create dataset
     try:
-        dataset = CarvanaDataset(dir_img, dir_mask, img_scale, if_random=True)
+        dataset = CarvanaDataset(dir_img, dir_mask, img_scale, if_random=random)
         dataset_val = CarvanaDataset(dir_img, dir_mask, img_scale, if_random=False)
     except (AssertionError, RuntimeError):
         pass
@@ -244,12 +247,20 @@ def get_args():
     parser.add_argument(
         "--classes", "-c", type=int, default=2, help="Number of classes"
     )
-
+    parser.add_argument(
+        "--data", "-d", type=int, default=2, help="Which dataset to train"
+    )
+    parser.add_argument(
+        "--random", "-r", action="store_true", default=False, help="Data augmentation"
+    )
     return parser.parse_args()
 
 
 if __name__ == "__main__":
     args = get_args()
+
+    dir_img = Path("./data/imgs_needle" + str(args.data) + "/")
+    dir_mask = Path("./data/masks_needle" + str(args.data) + "/")
 
     logging.basicConfig(level=logging.INFO, format="%(levelname)s: %(message)s")
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
@@ -282,6 +293,9 @@ if __name__ == "__main__":
             img_scale=args.scale,
             val_percent=args.val / 100,
             amp=args.amp,
+            dir_img=dir_img,
+            dir_mask=dir_mask,
+            random=args.random,
         )
     except KeyboardInterrupt:
         torch.save(net.state_dict(), "INTERRUPTED.pth")

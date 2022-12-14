@@ -138,3 +138,4 @@ data/imgs_brain/
 data/masks_brain/
 wandb/
 utils/__pycache__/data_loading.cpython-38.pyc
+INTERRUPTED.pth
