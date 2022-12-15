@@ -11,3 +11,6 @@ python needle_predict.py -m 'checkpoints/n2_brain_dice95_epoch3_flipcolor.pth' -
 # predict batch imgs
 python needle_predict_batch.py -m 'checkpoints/n2_brain_dice90_epoch2_norandom.pth' -i 'data/imgs_needle2' -o 'output/output2/'
 python needle_predict_batch.py -m 'checkpoints/n4_brain_dice86_epoch3_flipcolor.pth' -i 'data/imgs_needle4' -o 'output/output4/'
+
+# testing with batch imgs
+python needle_predict_batch.py -m 'checkpoints/n4_brain_dice84_epoch3_flipcolor.pth' -i 'data/imgs_testing2' -o 'output/testing/'
