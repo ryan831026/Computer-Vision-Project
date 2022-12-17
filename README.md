@@ -14,3 +14,31 @@ python needle_predict_batch.py -m 'checkpoints/n4_brain_dice86_epoch3_flipcolor.
 
 # testing with batch imgs
 python needle_predict_batch.py -m 'checkpoints/n4_brain_dice84_epoch3_flipcolor.pth' -i 'data/imgs_testing2' -o 'output/testing/'
+
+# How training data was obtained:
+## Training data preparataion
+1) Download the example insertion ros2 bag file from here and place it to `get_segments` folder: 
+https://livejohnshopkins-my.sharepoint.com/:f:/g/personal/yzhetpi1_jh_edu/EgFb4PZsU9hJtzmr1aYiHuIB4nesFivvtPTX07DqWVyLnw?e=bemnKr
+2) Sequentially run the following commands from get_segments folder:
+
+```
+#Parsing and saving to file needle insertion depths positions:
+python3 process_bag.py 2022-11-23_18-42-03 -r
+```
+
+```
+#Parsing, randomly sampling and saving to file timestamps:
+python3 process_bag.py 2022-11-23_18-42-03 -c -left -isTimeStamp
+python3 process_bag.py 2022-11-23_18-42-03 -c -right -isTimeStamp
+```
+
+```
+#Saving left and right images
+python3 process_bag.py 2022-11-23_18-42-03 -c -right
+python3 process_bag.py 2022-11-23_18-42-03 -c -left
+```
+
+```
+#Get masks:
+python3 needle_segment/main.py
+```
